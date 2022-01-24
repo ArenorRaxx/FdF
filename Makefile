@@ -6,41 +6,52 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/22 05:20:04 by mcorso           ###   ########.fr        #
+#    Updated: 2022/01/24 13:29:53 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_DIR = ./srcs/
-OBJ_DIR = ./objs/
-
-SRC_FILES = main.c
-OBJ_FILES = ${SRC_FILES:.c=.o}
-
-SRCS = ${addprefix $(SRC_DIR), ${SRC_FILES}}
-OBJS = ${addprefix $(OBJ_DIR), ${OBJ_FILES}}
-
-HEAD = ./
 NAME = fdf
 
+# src/obj
+SRC_FILES = main.c \
+	key_manager.c
+
+OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
+
+# compiler
 CC = gcc
-CFLAGS = #-Wall -Werror -Wextra
-RM = rm -f
+CFLAGS = -Wall -Werror -Wextra
 
-all:	${NAME}
+# mlx
+MLX = ./external/mlx_linux/
+MLX_LIB = $(addprefix $(MLX), libmlx_Linux.a)
+MLX_INC = -I $(MLX)
+MLX_LNK = -L $(MLX) -l mlx -L/usr/lib -lXext -lX11
 
-${NAME}: ${OBJS}
-	${CC} ${OBJS} ./mlx_linux/libmlx_Linux.a -I ./mlx_linux/ -lXext -lX11 -o ${NAME}
+# dir
+SRC_DIR = ./srcs/
+OBJ_DIR = ./objs/
+HEAD = ./
 
-${OBJS}: ${SRCS}
-	${CC} ${CFLAGS} -I${HEAD} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+all: obj $(MLX_LIB) ${NAME}
+
+obj:
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $(MLX_INC) -I $(HEAD) -o $@ -c $<
+
+$(MLX_LIB):
+	make -C $(MLX)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(MLX_LNK) -lm -o ${NAME}
 
 clean:
-	${RM} ${OBJS}
+	rm -rf $(OBJ_DIR)
+	make -C $(MLX) clean
 
 fclean: clean
-	${RM} ${NAME}
+	rm -rf $(NAME)
 
-re:
-	fclean all
-
-.PHONY: all ${NAME} clean fclean re
+re: fclean all
