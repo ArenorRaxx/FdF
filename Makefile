@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/24 13:29:53 by mcorso           ###   ########.fr        #
+#    Updated: 2022/01/24 20:20:04 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,12 @@ NAME = fdf
 
 # src/obj
 SRC_FILES = main.c \
-	key_manager.c
+	chain.c \
+	key_manager.c \
+	parsing.c
+
+GNL_FILES = get_next_line.c \
+	get_next_line_utils.c
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
@@ -28,15 +33,22 @@ MLX_LIB = $(addprefix $(MLX), libmlx_Linux.a)
 MLX_INC = -I $(MLX)
 MLX_LNK = -L $(MLX) -l mlx -L/usr/lib -lXext -lX11
 
+# gnl
+GNL = ./external/gnl/
+GNL_LIB = $(addprefix $(GNL), get_next_line.a)
+GNL_LNK = -L $(GNL) -l get_next_line
+
 # dir
 SRC_DIR = ./srcs/
 OBJ_DIR = ./objs/
 HEAD = ./
 
-all: obj $(MLX_LIB) ${NAME}
+all: obj $(GNL_LIB) $(MLX_LIB) ${NAME}
 
 obj:
 	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/gnl/%.c:$(GNL)%.C
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(MLX_INC) -I $(HEAD) -o $@ -c $<
@@ -44,14 +56,19 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 $(MLX_LIB):
 	make -C $(MLX)
 
+$(GNL_LIB):
+	make -C $(GNL)
+
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(MLX_LNK) -lm -o ${NAME}
+	$(CC) $(OBJS) $(GNL_LIB) $(MLX_LNK) -lm -o ${NAME}
 
 clean:
 	rm -rf $(OBJ_DIR)
 	make -C $(MLX) clean
+	make -C $(GNL) clean
 
 fclean: clean
 	rm -rf $(NAME)
+	make -C $(GNL) fclean
 
 re: fclean all
