@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 17:57:32 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/24 19:28:33 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ typedef struct s_coord {
 	void	*next;
 }				t_coord;
 
+void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str, int index);
+t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
+
+//Parsing
+t_coord	*parsing_file(int fd);
 
 //Window struct
 typedef struct s_vars {

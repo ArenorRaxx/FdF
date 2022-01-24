@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 17:45:08 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/24 20:33:00 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 int	main(int argc, char **argv)
 {
-	int		map;
+	int		fd;
 	t_vars	vars;
 	t_coord	*map;
 
 	if (argc != 2)
 		return (0);
-	map = open(*argv, O_RDONLY);
-	if (map < 0)
+	fd = open(*argv, O_RDONLY);
+	if (fd < 0)
 	{
 		perror(NULL);
 		return (0);
 	}
+	map = parsing_file(fd);
+	close(fd);
+	print_map(map);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FdF");
 	mlx_hook(vars.win, 2, 1L << 0, win_close, &vars);
