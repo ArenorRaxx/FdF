@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcorso <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:35:25 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/16 17:37:24 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 11:16:47 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*line_cpy(char *buffer)
 		ret[i++] = *buffer++;
 	if (*buffer == '\n')
 		ret[i++] = *buffer++;
-	ret[i] = *buffer;
+	ret[i] = '\0';
 	return (ret);
 }
 
