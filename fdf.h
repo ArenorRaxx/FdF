@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 18:16:56 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 19:56:44 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include "./external/mlx_linux/mlx.h"
 # include "./external/gnl/get_next_line.h"
+# include "./external/libft/libft.h"
 
 // Mapping
 typedef struct s_coord {
@@ -49,7 +50,7 @@ int		win_close(int keycode, t_vars *vars);
 void	win_init(t_vars *vars);
 void	hook_setup(t_vars *vars);
 
-// Drawing
+// Image managing
 typedef struct s_img {
 	void	*img;
 	char	*addr;
@@ -58,6 +59,9 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
+void	img_init(t_img *img, t_vars vars);
+
+// Drawing
 typedef struct s_point {
 	int	x;
 	int	y;
