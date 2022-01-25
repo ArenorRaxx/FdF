@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 16:06:57 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 18:16:56 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 // Includes
 # include <fcntl.h>
+# include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -35,8 +36,6 @@ typedef struct s_coord {
 void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str, int index);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
-
-// Parsing
 t_coord	*parsing_file(int fd);
 
 // Window managing
@@ -50,7 +49,7 @@ int		win_close(int keycode, t_vars *vars);
 void	win_init(t_vars *vars);
 void	hook_setup(t_vars *vars);
 
-// Image managing
+// Drawing
 typedef struct s_img {
 	void	*img;
 	char	*addr;
@@ -59,15 +58,14 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
-void	put_pixel(t_img *img, int x, int y, int color);
-
-// Drawing
-
 typedef struct s_point {
 	int	x;
 	int	y;
 }				t_point;
 
+void	put_pixel(t_img *img, int x, int y, int color);
+void	low_plot(t_img *img, t_point p0, t_point p1, int color);
+void	high_plot(t_img *img, t_point p0, t_point p1, int color);
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 #endif
