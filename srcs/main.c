@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 20:33:00 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 11:23:01 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	fd = open(*argv, O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
 		perror(NULL);
