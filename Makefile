@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/24 20:20:04 by mcorso           ###   ########.fr        #
+#    Updated: 2022/01/25 12:05:38 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,9 @@ NAME = fdf
 # src/obj
 SRC_FILES = main.c \
 	chain.c \
+	graphics.c \
 	key_manager.c \
 	parsing.c
-
-GNL_FILES = get_next_line.c \
-	get_next_line_utils.c
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
