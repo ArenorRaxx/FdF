@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 12:30:51 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 16:06:57 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "./external/mlx_linux/mlx.h"
 # include "./external/gnl/get_next_line.h"
 
-// Coords struct
+// Mapping
 typedef struct s_coord {
 	int		index;
 	char	*line;
@@ -39,7 +39,7 @@ t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
 // Parsing
 t_coord	*parsing_file(int fd);
 
-// Window struct
+// Window managing
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
@@ -50,7 +50,7 @@ int		win_close(int keycode, t_vars *vars);
 void	win_init(t_vars *vars);
 void	hook_setup(t_vars *vars);
 
-// Image struct
+// Image managing
 typedef struct s_img {
 	void	*img;
 	char	*addr;
@@ -60,5 +60,14 @@ typedef struct s_img {
 }				t_img;
 
 void	put_pixel(t_img *img, int x, int y, int color);
+
+// Drawing
+
+typedef struct s_point {
+	int	x;
+	int	y;
+}				t_point;
+
+void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 #endif
