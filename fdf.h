@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 12:19:38 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 12:27:03 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_vars {
 
 int		win_destroy(t_vars *vars);
 int		win_close(int keycode, t_vars *vars);
+void	win_init(t_vars *vars);
 
 // Image struct
 typedef struct s_img {

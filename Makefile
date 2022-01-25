@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/25 12:05:38 by mcorso           ###   ########.fr        #
+#    Updated: 2022/01/25 12:26:15 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME = fdf
 SRC_FILES = main.c \
 	chain.c \
 	graphics.c \
-	key_manager.c \
-	parsing.c
+	parsing.c \
+	window_manager.c
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 

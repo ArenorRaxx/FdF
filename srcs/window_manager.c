@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_manager.c                                      :+:      :+:    :+:   */
+/*   window_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 12:18:44 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 17:18:41 by mcorso           ###   ########.fr       */
+/*   Created: 2022/01/25 12:17:00 by mcorso            #+#    #+#             */
+/*   Updated: 2022/01/25 12:27:54 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	win_init(t_vars *vars)
+{
+	void	*mlx;
+	void	*win;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1920, 1080, "FdF");
+	vars->mlx = mlx;
+	vars->win = win;
+	hook_setup(vars);
+}
+
+void	hook_setup(t_vars *vars)
+{
+	mlx_hook(vars->win, 2, 1L << 0, win_close, &vars);
+	mlx_hook(vars->win, 17, 0, win_destroy, &vars);
+}
 
 int	win_close(int keycode, t_vars *vars)
 {
