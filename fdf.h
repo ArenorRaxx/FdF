@@ -6,12 +6,16 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 12:09:31 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 12:19:38 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+// Defines
+# define WIDTH 1920
+# define HEIGHT 1080
 
 // Includes
 # include <fcntl.h>
