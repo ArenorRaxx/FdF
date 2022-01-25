@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 20:32:59 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/25 11:21:19 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_coord	*parsing_file(int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		printf("%s", line);
 		if (!line)
 			break ;
 		curr_node = add_node(curr_node, new_node(line, i++));
