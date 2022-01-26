@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:35:25 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 11:16:47 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/26 01:24:15 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_eol(int fd, char *buffer)
 	tmp = malloc(sizeof(*tmp) * (BUFFER_SIZE + 1));
 	if (!tmp)
 		return (0);
-	while (!ft_strchr(buffer, '\n') && read_stat != 0)
+	while (!chr(buffer, '\n') && read_stat != 0)
 	{
 		read_stat = read(fd, tmp, BUFFER_SIZE);
 		if (read_stat < 0)
@@ -30,7 +30,7 @@ char	*find_eol(int fd, char *buffer)
 			return (NULL);
 		}
 		tmp[read_stat] = '\0';
-		buffer = ft_strjoin(buffer, tmp);
+		buffer = join(buffer, tmp);
 	}
 	free(tmp);
 	return (buffer);
@@ -73,7 +73,7 @@ char	*clean_buff(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	new_buff = malloc(sizeof(*new_buff) + (ft_strlen(buffer) - i + 1));
+	new_buff = malloc(sizeof(*new_buff) + (len(buffer) - i + 1));
 	i++;
 	if (!new_buff)
 		return (NULL);

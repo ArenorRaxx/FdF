@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcorso <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:55:31 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/16 17:29:52 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/26 01:25:32 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	len(char *str)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strchr(char *s, char c)
+int	chr(char *s, char c)
 {
 	if (!s)
 		return (0);
@@ -37,7 +37,7 @@ int	ft_strchr(char *s, char c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*join(char *s1, char *s2)
 {
 	int		i;
 	char	*ret_pointer;
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	ret_pointer = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	ret_pointer = malloc((len(s1) + len(s2) + 1) * sizeof(char));
 	if (!ret_pointer)
 		return (NULL);
 	while (s1[i])
