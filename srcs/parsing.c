@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 11:21:19 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/01/26 01:13:34 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,16 @@ t_coord	*parsing_file(int fd)
 			break ;
 		curr_node = add_node(curr_node, new_node(line, i++));
 	}
+	close(fd);
 	return (first_node);
+}
+
+int	line_length(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i] != NULL)
+		i++;
+	return (i);
 }
