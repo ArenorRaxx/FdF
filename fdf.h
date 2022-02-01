@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/26 01:14:22 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/01 16:13:25 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 /*		Defines		*/
 # define WIDTH 1920
 # define HEIGHT 1080
+# ifdef __APPLE__
+#  define ESCAPE_KEY 53
+# endif
+# ifdef __linux__
+#  define ESCAPE_KEY 65307
+# endif
+
 
 /*		Includes	*/
 # include <fcntl.h>

@@ -6,11 +6,12 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/25 19:56:11 by mcorso           ###   ########.fr        #
+#    Updated: 2022/02/01 16:00:31 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
+UNAME = $(shell uname)
 
 # src/obj
 SRC_FILES = main.c \
@@ -27,10 +28,18 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # mlx
-MLX = ./external/mlx_linux/
-MLX_LIB = $(addprefix $(MLX), libmlx_Linux.a)
-MLX_INC = -I $(MLX)
-MLX_LNK = -L $(MLX) -l mlx -L/usr/lib -lXext -lX11
+ifeq ($(UNAME), Linux)
+	MLX = ./external/mlx_linux/
+	MLX_LIB = $(addprefix $(MLX), libmlx_Linux.a)
+	MLX_INC = -I $(MLX)
+	MLX_LNK = -L $(MLX) -lmlx -L/usr/lib -lXext -lX11
+endif
+ifeq ($(UNAME), Darwin)
+	MLX = ./external/mlx_osx/
+	MLX_LIB = $(addprefix $(MLX), libmlx.a)
+	MLX_INC = -I $(MLX)
+	MLX_LNK = -L $(MLX) -lmlx -L/usr/lib -framework OpenGL -framework AppKit
+endif
 
 # gnl
 GNL = ./external/gnl/
