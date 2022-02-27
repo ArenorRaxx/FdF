@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/26 01:14:22 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/27 22:40:27 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 
 /*		Defines		*/
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
 
 /*		Includes	*/
 # include <fcntl.h>
@@ -28,6 +28,12 @@
 # include "./external/libft/libft.h"
 
 /*		Mapping		*/
+typedef struct s_map {
+	int		width;
+	int		height;
+	t_coord	*map;
+}				t_map;
+
 typedef struct s_coord {
 	int		index;
 	char	*line;
@@ -64,15 +70,26 @@ typedef struct s_img {
 void	img_init(t_img *img, t_vars vars);
 
 /*	Drawing	*/
+typedef struct s_3Dpoint {
+	int	x;
+	int	y;
+	int	z;
+}				t_3Dpoint;
+
 typedef struct s_point {
 	int	x;
 	int	y;
 }				t_point;
 
-void	draw_map_to_img(t_img *img, t_coord *map);
+typedef struct s_line {
+	t_point	d1;
+	t_point	d2;
+}				t_line;
+
+void	draw_map_to_img(t_img *img, t_line *map);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	low_plot(t_img *img, t_point p0, t_point p1, int color);
 void	high_plot(t_img *img, t_point p0, t_point p1, int color);
-void	draw_line(t_img *img, t_point p0, t_point p1, int color);
+void	draw_line(t_img *img, t_line line, int color);
 
 #endif

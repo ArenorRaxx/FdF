@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:45:47 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 18:11:30 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/27 22:21:38 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_line(t_img *img, t_point p0, t_point p1, int color)
+void	draw_line(t_img *img, t_line line, int color)
 {
+	t_point	p0;
+	t_point	p1;
+
+	p0 = line.d1;
+	p1 = line.d2;
 	if (abs(p1.y - p0.y) < abs(p1.x - p0.x))
 	{
 		if (p0.x > p1.x)
