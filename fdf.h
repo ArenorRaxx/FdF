@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/27 22:40:27 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/27 23:35:00 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,33 @@
 # include "./external/libft/libft.h"
 
 /*		Mapping		*/
-typedef struct s_map {
-	int		width;
-	int		height;
-	t_coord	*map;
-}				t_map;
-
 typedef struct s_coord {
-	int		index;
 	char	*line;
 	void	*next;
 }				t_coord;
+
+typedef struct s_3Dpoint {
+	int	x;
+	int	y;
+	int	z;
+}				t_3Dpoint;
+
+typedef struct s_map {
+	int			width;
+	int			height;
+	int			tile_width;
+	int			tile_height;
+	t_coord		*map;
+	t_3Dpoint	**parsed_map;
+}				t_map;
 
 void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str, int index);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
 // Parsing
 int		line_length(char **split);
-t_coord	*parsing_file(int fd);
+void	parsing_points(t_map *map);
+void	parsing_file(int fd, t_map *map);
 
 /*	Window managing	*/
 typedef struct s_vars {
@@ -70,12 +79,6 @@ typedef struct s_img {
 void	img_init(t_img *img, t_vars vars);
 
 /*	Drawing	*/
-typedef struct s_3Dpoint {
-	int	x;
-	int	y;
-	int	z;
-}				t_3Dpoint;
-
 typedef struct s_point {
 	int	x;
 	int	y;
