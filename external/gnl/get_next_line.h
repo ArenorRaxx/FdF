@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:33:44 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/26 01:22:58 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/27 23:20:57 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 50
 
 int		chr(char *s, char c);
 char	*get_next_line(int fd);

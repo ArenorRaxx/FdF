@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/24 19:57:57 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/24 20:15:58 by mcorso           ###   ########.fr        #
+#    Updated: 2022/02/27 23:20:41 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_FILES = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
 #meta
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=50
+CFLAGS = -Wall -Werror -Wextra
 NAME = get_next_line.a
 
 #dir
