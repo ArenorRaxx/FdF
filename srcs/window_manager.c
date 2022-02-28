@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 12:17:00 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/25 12:27:54 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 20:32:27 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	win_init(t_vars *vars)
 	void	*win;
 
 	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1920, 1080, "FdF");
+	win = mlx_new_window(mlx, WIDTH, HEIGHT, "FdF");
 	vars->mlx = mlx;
 	vars->win = win;
 	hook_setup(vars);
