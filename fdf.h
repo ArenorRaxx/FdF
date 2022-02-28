@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/27 23:35:00 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:11:32 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,13 @@ typedef struct s_coord {
 	void	*next;
 }				t_coord;
 
-typedef struct s_3Dpoint {
-	int	x;
-	int	y;
-	int	z;
-}				t_3Dpoint;
-
 typedef struct s_map {
 	int			width;
 	int			height;
-	int			tile_width;
-	int			tile_height;
+	int			tw;
+	int			th;
 	t_coord		*map;
-	t_3Dpoint	**parsed_map;
+	t_point		**parsed_map;
 }				t_map;
 
 void	print_map(t_coord *first_node);

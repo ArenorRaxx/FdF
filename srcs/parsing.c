@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/27 23:31:19 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:11:10 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,26 @@ void	parsing_points(t_map *map)
 {
 	int			x;
 	int			y;
+	int			z;
 	char		**tmp;
 	t_coord		*curr_node;
 
 	x = 0;
-	y = 0;
+	y = -1;
 	curr_node = map->map;
 	map->parsed_map = malloc(sizeof(*map->parsed_map) * map->height);
 	while (x < map->height)
 		map->parsed_map[x++] = malloc(sizeof(**map->parsed_map) * map->width);
-	while (y < map->height)
+	while (++y < map->height)
 	{
-		x = 0;
+		x = -1;
 		tmp = ft_split(curr_node->line, ' ');
-		while (x < map->width)
+		while (++x < map->width)
 		{
-			map->parsed_map[y][x].x = x;
-			map->parsed_map[y][x].y = y;
-			map->parsed_map[y][x].z = ft_atoi(tmp[x]);
-			x++;
+			z = ft_atoi(tmp[x]);
+			map->parsed_map[y][x].x = (WIDTH / 2) + (x - y) * map->tw;
+			map->parsed_map[y][x].y = (x + y) * map->th + (map->th / 2 * z);
 		}
 		free(tmp);
-		y++;
 	}
-}
-
-t_point	*to_2d(t_3Dpoint **map)
-{
 }
