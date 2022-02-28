@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/01/25 19:56:11 by mcorso           ###   ########.fr        #
+#    Updated: 2022/02/28 03:56:05 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC_FILES = main.c \
 	chain.c \
 	graphics.c \
 	image_manager.c \
+	map_manager.c \
 	parsing.c \
 	window_manager.c
 
