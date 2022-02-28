@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 02:11:10 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:13:35 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 void	parsing_file(int fd, t_map *map)
 {
-	int		i;
 	char	*line;
 	t_coord	*curr_node;
 
-	i = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return ;
-	map->map = new_node(line, i++);
+	map->map = new_node(line);
 	curr_node = map->map;
 	while (line)
 	{
 		line = get_next_line(fd);
-		curr_node = add_node(curr_node, new_node(line, i++));
+		curr_node = add_node(curr_node, new_node(line));
 	}
 	close(fd);
 }

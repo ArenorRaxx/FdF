@@ -6,13 +6,13 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:45:34 by mcorso            #+#    #+#             */
-/*   Updated: 2022/01/24 20:29:55 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:12:40 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_coord	*new_node(char *str, int index)
+t_coord	*new_node(char *str)
 {
 	t_coord	*new_node;
 
@@ -21,7 +21,6 @@ t_coord	*new_node(char *str, int index)
 		return (0);
 	new_node->line = str;
 	new_node->next = NULL;
-	new_node->index = index;
 	return (new_node);
 }
 

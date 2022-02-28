@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 02:11:32 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:13:02 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_map {
 }				t_map;
 
 void	print_map(t_coord *first_node);
-t_coord	*new_node(char *str, int index);
+t_coord	*new_node(char *str);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
 // Parsing
 int		line_length(char **split);
