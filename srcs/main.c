@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 05:18:17 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 21:01:43 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	manage_map(&map, argv[1]);
+	printf("width : %i ; height : %i\n", map.width, map.height);
 	win_init(&vars);
 	img_init(&img, vars);
 	draw_map_to_img(&img, &map);
