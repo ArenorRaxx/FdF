@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 02:13:02 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 02:41:13 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@
 # include "./external/libft/libft.h"
 
 /*		Mapping		*/
+struct	s_point;
+
 typedef struct s_coord {
 	char	*line;
 	void	*next;
 }				t_coord;
 
 typedef struct s_map {
-	int			width;
-	int			height;
-	int			tw;
-	int			th;
-	t_coord		*map;
-	t_point		**parsed_map;
+	int				width;
+	int				height;
+	int				tw;
+	int				th;
+	t_coord			*map;
+	struct s_point	**parsed_map;
 }				t_map;
 
 void	print_map(t_coord *first_node);
@@ -83,7 +85,7 @@ typedef struct s_line {
 	t_point	d2;
 }				t_line;
 
-void	draw_map_to_img(t_img *img, t_line *map);
+//void	draw_map_to_img(t_img *img, t_line *map);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	low_plot(t_img *img, t_point p0, t_point p1, int color);
 void	high_plot(t_img *img, t_point p0, t_point p1, int color);
