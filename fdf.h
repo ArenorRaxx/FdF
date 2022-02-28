@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 02:41:13 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 04:10:49 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,17 @@ typedef struct s_map {
 	struct s_point	**parsed_map;
 }				t_map;
 
+// Basics
 void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
+// Managing
+void	manage_map(t_map *map, char *file);
 // Parsing
 int		line_length(char **split);
 void	parsing_points(t_map *map);
 void	parsing_file(int fd, t_map *map);
+void	double_tab_free(char ***tab);
 
 /*	Window managing	*/
 typedef struct s_vars {
