@@ -6,11 +6,29 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 04:37:40 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 23:37:12 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static int	mini(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+static void	define_tile_measurement(t_map *map)
+{
+	int	dia;
+
+	dia = 2 * mini(map->width, map->height) + abs(map->width - map->height);
+	map->tw = WIDTH / dia;
+	map->th = HEIGHT / dia;
+	printf("tw %i, th %i\n", map->tw, map->th);
+
+}
 
 static void	ruler(t_map *map, char *file)
 {
@@ -35,8 +53,8 @@ static void	ruler(t_map *map, char *file)
 		map->height++;
 		line = get_next_line(fd);
 	}
-	map->tw = WIDTH / (2 * map->width);
-	map->th = HEIGHT / (2 * map->height) / 2;
+	define_tile_measurement(map);
+
 	close(fd);
 	return (free(line), double_tab_free(&split));
 }
