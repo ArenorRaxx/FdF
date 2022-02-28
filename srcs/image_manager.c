@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:38:51 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 05:18:19 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 21:11:47 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	draw_map_to_img(t_img *img, t_map *map)
 	int		y;
 	t_line	line;
 
-	y = 0;
-	while (y < map->height)
+	y = -1;
+	while (++y < map->height)
 	{
-		x = 0;
-		while (x < map->width)
+		x = -1;
+		while (++x < map->width)
 		{
 			line.d1.x = map->parsed_map[y][x].x;
 			line.d1.y = map->parsed_map[y][x].y;
@@ -45,8 +45,5 @@ void	draw_map_to_img(t_img *img, t_map *map)
 				line.d2.y = map->parsed_map[y + 1][x].y;
 				draw_line(img, line, 0x00FF0000);
 			}
-			x++;
 		}
-		y++;
 	}
-}
