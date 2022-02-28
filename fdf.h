@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 04:10:49 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 04:49:41 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_line {
 	t_point	d2;
 }				t_line;
 
-//void	draw_map_to_img(t_img *img, t_line *map);
+void	draw_map_to_img(t_img *img, t_map *map);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	low_plot(t_img *img, t_point p0, t_point p1, int color);
 void	high_plot(t_img *img, t_point p0, t_point p1, int color);
