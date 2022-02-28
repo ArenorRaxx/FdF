@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 21:07:48 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/01 00:15:37 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parsing_points(t_map *map)
 {
 	int			x;
 	int			y;
-	int			z;
+	//int			z;
 	char		**tmp;
 	t_coord		*curr_node;
 
@@ -60,9 +60,9 @@ void	parsing_points(t_map *map)
 		tmp = ft_split(curr_node->line, ' ');
 		while (++x < map->width)
 		{
-			z = ft_atoi(tmp[x]);
-			map->parsed_map[y][x].x = (x - y) * map->tw + (WIDTH / 2);
-			map->parsed_map[y][x].y = (x + y) * map->th - (1 * z);
+			//z = ft_atoi(tmp[x]);
+			map->parsed_map[y][x].x = (x - y) * map->tw + map->offset;
+			map->parsed_map[y][x].y = (x + y) * map->th;// - (5 * z);
 		}
 		double_tab_free(&tmp);
 		curr_node = curr_node->next;

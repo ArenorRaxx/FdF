@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 23:37:12 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/01 00:14:37 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ static int	mini(int a, int b)
 
 static void	define_tile_measurement(t_map *map)
 {
+	int	n;
+	int	m;
 	int	dia;
 
-	dia = 2 * mini(map->width, map->height) + abs(map->width - map->height);
+	n = mini(map->width, map->height);
+	m = map->width - map->height;
+	dia = 2 * n + abs(m);
 	map->tw = WIDTH / dia;
 	map->th = HEIGHT / dia;
+	map->offset = (WIDTH - map->tw * m) / 2;
 	printf("tw %i, th %i\n", map->tw, map->th);
-
 }
 
 static void	ruler(t_map *map, char *file)

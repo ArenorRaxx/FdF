@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 20:32:59 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/28 23:44:37 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_coord {
 typedef struct s_map {
 	int				width;
 	int				height;
+	int				offset;
 	int				tw;
 	int				th;
 	t_coord			*map;
