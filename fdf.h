@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 17:21:56 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:25:09 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	manage_map(t_map *map, char *file);
 int		line_length(char **split);
 void	parsing_points(t_map *map);
 void	parsing_file(int fd, t_map *map);
-void	double_tab_free(char ***tab);
 
 static inline int	mini(int a, int b)
 {
