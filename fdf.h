@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 17:14:34 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:21:56 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,38 @@ int		line_length(char **split);
 void	parsing_points(t_map *map);
 void	parsing_file(int fd, t_map *map);
 void	double_tab_free(char ***tab);
+
+static inline int	mini(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+static inline void	double_tab_free(char ***tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[0][i] != NULL)
+		free(tab[0][i++]);
+	free(*tab);
+}
+
+static inline void	define_tile_measurement(t_map *map)
+{
+	int	n;
+	int	m;
+	int	dia;
+
+	n = mini(map->width, map->height);
+	m = map->width - map->height;
+	dia = 2 * n + abs(m);
+	map->tw = WIDTH / dia;
+	map->th = HEIGHT / dia;
+	map->offset = (WIDTH - map->tw * m) / 2;
+	printf("tw %i, th %i\n", map->tw, map->th);
+}
 
 /*	Window managing	*/
 typedef struct s_vars {

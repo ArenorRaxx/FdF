@@ -6,21 +6,11 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 16:33:40 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:21:28 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	double_tab_free(char ***tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[0][i] != NULL)
-		free(tab[0][i++]);
-	free(*tab);
-}
 
 void	parsing_file(int fd, t_map *map)
 {
