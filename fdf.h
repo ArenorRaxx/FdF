@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 17:08:31 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:14:34 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	draw_line(t_img *img, t_line line, int color);
 
 static inline void	fill_line(t_point *point, t_map map, int x, int y)
 {
-	point.x = map->parsed_map[y][x].x;
-	point.y = map->parsed_map[y][x].y;
+	point->x = map.parsed_map[y][x].x;
+	point->y = map.parsed_map[y][x].y;
 }
 
 #endif
