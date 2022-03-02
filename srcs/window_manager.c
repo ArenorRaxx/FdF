@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 12:17:00 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 20:32:27 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:08:29 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	hook_setup(t_vars *vars)
 int	win_close(int keycode, t_vars *vars)
 {
 	(void)vars;
-	if (keycode == 65307)
+	if (keycode == ESCAPE_KEY)
 		exit(0);
 	return (0);
 }

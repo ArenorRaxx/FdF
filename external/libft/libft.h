@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:20:38 by mcorso            #+#    #+#             */
-/*   Updated: 2021/12/08 16:16:31 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/02/01 16:11:23 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 
 int		ft_lstsize(t_list *lst);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-void	ft_lstadd_back(t_list **alst, t_list *new);
-void	ft_lstadd_front(t_list **alst, t_list *new);
+//void	ft_lstadd_back(t_list **alst, t_list *new);
+//void	ft_lstadd_front(t_list **alst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list	*ft_lstlast(t_list *lst);
