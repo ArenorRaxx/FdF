@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 17:25:09 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:38:42 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # ifdef __linux__
 #  define ESCAPE_KEY 65307
 # endif
-
 
 /*		Includes	*/
 # include <fcntl.h>
