@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/01 00:15:37 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 16:33:40 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,43 @@ void	parsing_file(int fd, t_map *map)
 	close(fd);
 }
 
+static void	calc_xy(t_map *map, char **row, int x, int y)
+{
+	int	xa;
+	int	ya;
+	int	z;
+	int	scale;
+
+	z = ft_atoi(row[x]);
+	xa = (x - y) * map->tw + map->offset;
+	ya = (x + y) * map->th - (map->amp * z);
+	ya -= map->highest;
+	scale = abs(map->highest) + abs(map->lowest);
+	map->parsed_map[y][x].x = xa;
+	map->parsed_map[y][x].y = (ya * HEIGHT) / scale;
+}
+
 void	parsing_points(t_map *map)
 {
 	int			x;
 	int			y;
-	//int			z;
 	char		**tmp;
 	t_coord		*curr_node;
 
 	x = 0;
-	y = -1;
+	y = 0;
 	curr_node = map->map;
 	map->parsed_map = malloc(sizeof(*map->parsed_map) * map->height);
 	while (x < map->height)
 		map->parsed_map[x++] = malloc(sizeof(**map->parsed_map) * map->width);
-	while (++y < map->height)
+	while (y < map->height)
 	{
-		x = -1;
+		x = 0;
 		tmp = ft_split(curr_node->line, ' ');
-		while (++x < map->width)
-		{
-			//z = ft_atoi(tmp[x]);
-			map->parsed_map[y][x].x = (x - y) * map->tw + map->offset;
-			map->parsed_map[y][x].y = (x + y) * map->th;// - (5 * z);
-		}
+		while (x < map->width)
+			calc_xy(map, tmp, x++, y);
 		double_tab_free(&tmp);
 		curr_node = curr_node->next;
+		y++;
 	}
 }
