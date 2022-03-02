@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:38:51 by mcorso            #+#    #+#             */
-/*   Updated: 2022/02/28 21:16:48 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/02 17:00:31 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,15 @@ void	draw_map_to_img(t_img *img, t_map *map)
 		x = -1;
 		while (++x < map->width)
 		{
-			line.d1.x = map->parsed_map[y][x].x;
-			line.d1.y = map->parsed_map[y][x].y;
+			fill_line(&line.d1, *map, x, y);
 			if (x != map->width - 1)
 			{
-				line.d2.x = map->parsed_map[y][x + 1].x;
-				line.d2.y = map->parsed_map[y][x + 1].y;
+				fill_line(&line.d2, *map, x + 1, y);
 				draw_line(img, line, 0x00FF0000);
 			}
 			if (y != map->height - 1)
 			{
-				line.d2.x = map->parsed_map[y + 1][x].x;
-				line.d2.y = map->parsed_map[y + 1][x].y;
+				fill_line(&line.d2, *map, x, y + 1);
 				draw_line(img, line, 0x00FF0000);
 			}
 		}
