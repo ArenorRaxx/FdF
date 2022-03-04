@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/04 21:31:53 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/04 23:35:00 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ typedef struct s_map {
 }				t_map;
 
 // Basics
+void	del_chain(t_coord *map);
 void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
 // Managing
 void	map_init(t_map *map, char *file);
+void	map_load(t_map *map, char *file);
 // Parsing
 int		line_length(char **split);
 void	parsing_points(t_map *map);
@@ -82,6 +84,16 @@ static inline void	double_tab_free(char ***tab)
 	while (tab[0][i] != NULL)
 		free(tab[0][i++]);
 	free(*tab);
+}
+
+static inline void	free_parsed_map(t_map *map)
+{
+	int	y;
+
+	y = 0;
+	while (y < map->height)
+		free(map->parsed_map[y++]);
+	free(map->parsed_map);
 }
 
 static inline void	define_tile_measurement(t_map *map)
