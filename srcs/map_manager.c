@@ -81,7 +81,7 @@ void	manage_map(t_map *map, char *file)
 	}
 	map->tw = 0;
 	map->th = 0;
-	map->amp = 10;
+	map->amp = 5;
 	map->highest = 0;
 	map->lowest = 0;
 	map->width = -1;
