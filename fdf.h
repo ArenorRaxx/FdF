@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/02 17:38:42 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/04 21:31:53 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 /*		Defines		*/
 # define WIDTH 1920
-# define HEIGHT 1080
+# define HEIGHT 1000
 # ifdef __APPLE__
 #  define ESCAPE_KEY 53
 # endif
 # ifdef __linux__
-#  define ESCAPE_KEY 65307
+#  define KEY_UP 65362
+#  define KEY_ESC 65307
+#  define KEY_DOWN 65364
 # endif
 
 /*		Includes	*/
@@ -59,7 +61,7 @@ void	print_map(t_coord *first_node);
 t_coord	*new_node(char *str);
 t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
 // Managing
-void	manage_map(t_map *map, char *file);
+void	map_init(t_map *map, char *file);
 // Parsing
 int		line_length(char **split);
 void	parsing_points(t_map *map);
@@ -97,18 +99,20 @@ static inline void	define_tile_measurement(t_map *map)
 	printf("tw %i, th %i\n", map->tw, map->th);
 }
 
-/*	Window managing	*/
+/*		Window managing		*/
+struct	s_env;
+
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 }				t_vars;
 
-int		win_destroy(t_vars *vars);
-int		win_close(int keycode, t_vars *vars);
-void	win_init(t_vars *vars);
-void	hook_setup(t_vars *vars);
+int		win_destroy(struct s_env *env);
+int		win_close(int keycode, struct s_env *env);
+void	win_init(struct s_env *env);
+void	hook_setup(struct s_env *env);
 
-/*	Image managing	*/
+/*		Image managing		*/
 typedef struct s_img {
 	void	*img;
 	char	*addr;
@@ -119,7 +123,7 @@ typedef struct s_img {
 
 void	img_init(t_img *img, t_vars vars);
 
-/*	Drawing	*/
+/*		Drawing		*/
 typedef struct s_point {
 	int	x;
 	int	y;
@@ -141,5 +145,13 @@ static inline void	fill_line(t_point *point, t_map map, int x, int y)
 	point->x = map.parsed_map[y][x].x;
 	point->y = map.parsed_map[y][x].y;
 }
+
+/*		Env		*/
+
+typedef struct s_env {
+	t_img	img;
+	t_map	map;
+	t_vars	vars;
+}				t_env;
 
 #endif
