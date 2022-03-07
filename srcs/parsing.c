@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/04 23:27:58 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/07 12:21:29 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ void	parsing_points(t_map *map)
 	char		**tmp;
 	t_coord		*curr_node;
 
-	x = 0;
+	x = -1;
 	y = 0;
 	curr_node = map->map;
-	map->parsed_map = malloc(sizeof(map->parsed_map) * map->height);
-	while (x < map->height)
-		map->parsed_map[x++] = malloc(sizeof(**map->parsed_map) * map->width);
+	if (!map->parsed_map)
+	{
+		map->parsed_map = malloc(sizeof(map->parsed_map) * map->height);
+		while (++x < map->height)
+			map->parsed_map[x] = malloc(sizeof(**map->parsed_map) * map->width);
+	}
 	while (y < map->height)
 	{
 		x = 0;

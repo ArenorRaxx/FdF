@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/07 11:13:36 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/07 12:10:08 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
+void	img_reload(struct s_env *env);
 void	img_init(t_img *img, t_vars vars);
 
 /*		Drawing		*/

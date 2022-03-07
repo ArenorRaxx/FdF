@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/04 22:07:59 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/07 12:20:57 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,15 @@ void	map_load(t_map *map, char *file)
 {
 	int	fd;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (perror(NULL));
-	ruler(map, file);
+	if (file)
+	{
+		fd = open(file, O_RDONLY);
+		if (fd < 0)
+			return (perror(NULL));
+		ruler(map, file);
+	}
+	else
+		fd = 0;
 	if (!map->map)
 		parsing_file(fd, map);
 	high_low(map);
@@ -90,6 +95,7 @@ void	map_init(t_map *map, char *file)
 	map->th = 0;
 	map->amp = 1;
 	map->map = NULL;
+	map->parsed_map = NULL;
 	map->highest = 0;
 	map->lowest = 0;
 	map->width = -1;
