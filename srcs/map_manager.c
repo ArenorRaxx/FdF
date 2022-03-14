@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 21:34:17 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 23:40:43 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	map_load(t_map *map, char *file)
 
 int	map_init(t_map *map, char *file)
 {
-	map->width = -1;
+	map->width = 0;
 	map->height = 0;
 	map->offset = 0;
 	map->lowest = 0;

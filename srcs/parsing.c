@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:57:27 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 23:43:02 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ static int	malloc_map(t_map *map)
 			return (-1);
 		while (y < map->height)
 		{
-			map->parsed_map[y] = malloc(sizeof(**map->parsed_map) * map->width);
+			map->parsed_map[y] = \
+				malloc(sizeof(**map->parsed_map) * (map->width + 1));
 			if (!map->parsed_map[y++])
 			{
 				while (y >= 0)
