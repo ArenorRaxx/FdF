@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/07 12:10:08 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:31:31 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 struct	s_point;
 
 typedef struct s_coord {
-	char	*line;
-	void	*next;
+	char			**line;
+	struct s_coord	*next;
 }				t_coord;
 
 typedef struct s_map {
@@ -57,17 +57,17 @@ typedef struct s_map {
 }				t_map;
 
 // Basics
+int		add_node(t_coord *prev_node, char *line);
 void	del_chain(t_coord *map);
 void	print_map(t_coord *first_node);
-t_coord	*new_node(char *str);
-t_coord	*add_node(t_coord *prev_node, t_coord *new_node);
+t_coord	*new_node(char **line, t_coord *node);
 // Managing
-void	map_init(t_map *map, char *file);
-void	map_load(t_map *map, char *file);
+int		map_init(t_map *map, char *file);
+int		map_load(t_map *map, char *file);
 // Parsing
 int		line_length(char **split);
-void	parsing_points(t_map *map);
-void	parsing_file(int fd, t_map *map);
+int		parsing_points(t_map *map);
+int		parsing_file(int fd, t_map *map);
 
 static inline int	mini(int a, int b)
 {
@@ -108,7 +108,6 @@ static inline void	define_tile_measurement(t_map *map)
 	map->tw = WIDTH / dia;
 	map->th = HEIGHT / dia;
 	map->offset = (WIDTH - map->tw * m) / 2;
-	printf("tw %i, th %i\n", map->tw, map->th);
 }
 
 /*		Window managing		*/
@@ -119,9 +118,8 @@ typedef struct s_vars {
 	void	*win;
 }				t_vars;
 
-int		win_destroy(struct s_env *env);
-int		win_close(int keycode, struct s_env *env);
-void	win_init(struct s_env *env);
+int		win_init(struct s_env *env);
+int		hook_manage_key(int keycode, struct s_env *env);
 void	hook_setup(struct s_env *env);
 
 /*		Image managing		*/
@@ -133,8 +131,8 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
+int		img_init(t_img *img, t_vars vars);
 void	img_reload(struct s_env *env);
-void	img_init(t_img *img, t_vars vars);
 
 /*		Drawing		*/
 typedef struct s_point {
@@ -176,5 +174,8 @@ typedef struct s_env {
 	t_map	map;
 	t_vars	vars;
 }				t_env;
+
+int		env_init(t_env *env, char **argv);
+int		env_destroy(struct s_env *env);
 
 #endif

@@ -6,17 +6,20 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:38:51 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/10 17:02:13 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:19:43 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	img_init(t_img *img, t_vars vars)
+int	img_init(t_img *img, t_vars vars)
 {
 	img->img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
+	if (!img->img)
+		return (-1);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 	&img->line_length, &img->endian);
+	return (0);
 }
 
 void	draw_map_to_img(t_img *img, t_map *map)
@@ -78,7 +81,8 @@ void	img_reload(t_env *env)
 	env->map.highest = 0;
 	env->map.lowest = 0;
 	undraw_map(&env->img, &env->map);
-	map_load(&env->map, NULL);
+	if (map_load(&env->map, NULL) < 0)
+		env_destroy(env);
 	draw_map_to_img(&env->img, &env->map);
 	mlx_put_image_to_window(env->vars.mlx, env->vars.win, env->img.img, 0, 0);
 }

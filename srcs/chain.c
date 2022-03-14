@@ -6,29 +6,37 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:45:34 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/04 22:23:45 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:31:34 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+#include <stdio.h>
 
-t_coord	*new_node(char *str)
+t_coord	*new_node(char **line, t_coord *node)
 {
-	t_coord	*new_node;
-
-	new_node = malloc(sizeof(*new_node));
-	if (!new_node)
-		return (0);
-	new_node->line = str;
-	new_node->next = NULL;
-	return (new_node);
+	node->line = line;
+	node->next = NULL;
+	return (node);
 }
 
-t_coord	*add_node(t_coord *prev_node, t_coord *new_node)
+int	add_node(t_coord *prev_node, char *line)
 {
-	if (prev_node)
-		prev_node->next = new_node;
-	return (new_node);
+	char	**split;
+
+	split = NULL;
+	prev_node->next = malloc(sizeof(*prev_node));
+	if (prev_node->next)
+	{
+		split = ft_split(line, ' ');
+		if (split)
+		{
+			new_node(split, prev_node->next);
+			return (0);
+		}
+	}
+	free(line);
+	return (-1);
 }
 
 void	del_chain(t_coord *map)
@@ -39,19 +47,8 @@ void	del_chain(t_coord *map)
 	{
 		curr_node = map;
 		map = map->next;
-		free(curr_node->line);
+		if (curr_node->line)
+			free(curr_node->line);
 		free(curr_node);
-	}
-}
-
-void	print_map(t_coord *first_node)
-{
-	t_coord	*curr_node;
-
-	curr_node = first_node;
-	while (curr_node)
-	{
-		printf("%s\n", curr_node->line);
-		curr_node = curr_node->next;
 	}
 }

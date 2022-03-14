@@ -6,28 +6,33 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/07 12:21:29 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:46:11 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	parsing_file(int fd, t_map *map)
+int	parsing_file(int fd, t_map *map)
 {
 	char	*line;
+	char	**split;
 	t_coord	*curr_node;
 
-	line = get_next_line(fd);
-	if (!line)
-		return ;
-	map->map = new_node(line);
-	curr_node = map->map;
-	while (line)
+	split = ft_split(get_next_line(fd), ' ');
+	if (!split)
+		return (-1);
+	curr_node = new_node(split, map->map);
+	while (1)
 	{
 		line = get_next_line(fd);
-		curr_node = add_node(curr_node, new_node(line));
+		if (!line)
+			break ;
+		if (add_node(curr_node, line) < 0)
+			return (-1);
+		curr_node = curr_node->next;
 	}
 	close(fd);
+	return (0);
 }
 
 static void	calc_xy(t_map *map, char **row, int x, int y)
@@ -46,30 +51,48 @@ static void	calc_xy(t_map *map, char **row, int x, int y)
 	map->parsed_map[y][x].y = (ya * HEIGHT) / scale;
 }
 
-void	parsing_points(t_map *map)
+static int	malloc_map(t_map *map)
 {
-	int			x;
-	int			y;
-	char		**tmp;
-	t_coord		*curr_node;
+	int	y;
 
-	x = -1;
 	y = 0;
-	curr_node = map->map;
 	if (!map->parsed_map)
 	{
 		map->parsed_map = malloc(sizeof(map->parsed_map) * map->height);
-		while (++x < map->height)
-			map->parsed_map[x] = malloc(sizeof(**map->parsed_map) * map->width);
+		if (!map->parsed_map)
+			return (-1);
+		while (y < map->height)
+		{
+			map->parsed_map[y] = malloc(sizeof(**map->parsed_map) * map->width);
+			if (!map->parsed_map[y++])
+			{
+				while (y >= 0)
+					free(map->parsed_map[--y]);
+				free(map->parsed_map);
+				return (-1);
+			}
+		}
 	}
-	while (y < map->height)
+	return (0);
+}
+
+int	parsing_points(t_map *map)
+{
+	int			x;
+	int			y;
+	t_coord		*curr_node;
+
+	y = 0;
+	curr_node = map->map;
+	if (malloc_map(map) < 0)
+		return (-1);
+	while (curr_node)
 	{
 		x = 0;
-		tmp = ft_split(curr_node->line, ' ');
-		while (x < map->width)
-			calc_xy(map, tmp, x++, y);
-		double_tab_free(&tmp);
+		while (curr_node->line[x])
+			calc_xy(map, curr_node->line, x++, y);
 		curr_node = curr_node->next;
 		y++;
 	}
+	return (0);
 }
