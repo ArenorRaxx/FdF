@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:45:34 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:31:34 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:55:23 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,17 @@ int	add_node(t_coord *prev_node, char *line)
 
 void	del_chain(t_coord *map)
 {
+	int		x;
 	t_coord	*curr_node;
 
 	while (map)
 	{
+		x = 0;
 		curr_node = map;
+		while (curr_node->line[x])
+			free(curr_node->line[x++]);
 		map = map->next;
-		if (curr_node->line)
-			free(curr_node->line);
+		free(curr_node->line);
 		free(curr_node);
 	}
 }

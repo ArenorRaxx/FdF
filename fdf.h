@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:31:31 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:52:13 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,6 @@ static inline int	mini(int a, int b)
 	if (a < b)
 		return (a);
 	return (b);
-}
-
-static inline void	double_tab_free(char ***tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[0][i] != NULL)
-		free(tab[0][i++]);
-	free(*tab);
 }
 
 static inline void	free_parsed_map(t_map *map)

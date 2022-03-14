@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:46:11 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:57:27 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int	parsing_file(int fd, t_map *map)
 	char	**split;
 	t_coord	*curr_node;
 
-	split = ft_split(get_next_line(fd), ' ');
+	line = get_next_line(fd);
+	split = ft_split(line, ' ');
 	if (!split)
 		return (-1);
 	curr_node = new_node(split, map->map);
 	while (1)
 	{
+		free(line);
 		line = get_next_line(fd);
 		if (!line)
 			break ;
