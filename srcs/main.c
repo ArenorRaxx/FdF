@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:20:56 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 23:23:09 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 		perror("FDF");
 		env_destroy(&env);
 	}
+	mlx_do_key_autorepeaton(env.vars.mlx);
 	draw_map_to_img(&env.img, &env.map);
 	mlx_put_image_to_window(env.vars.mlx, env.vars.win, env.img.img, 0, 0);
 	mlx_loop(env.vars.mlx);
