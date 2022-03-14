@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:44:38 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 21:34:17 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,37 @@ static int	high_low(t_map *map)
 	return (0);
 }
 
+static int	fd_manager(char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDWR);
+	if (fd < 0)
+		return (-1);
+	else if (errno == EACCES || \
+			errno == EFAULT || \
+			errno == ELOOP || \
+			errno == ENOENT || \
+			errno == EFBIG || \
+			errno == EISDIR || \
+			errno == ENOENT)
+		return (-1);
+	return (fd);
+}
+
 int	map_load(t_map *map, char *file)
 {
 	int	fd;
 
 	if (file)
 	{
-		fd = open(file, O_RDONLY);
+		fd = fd_manager(file);
 		if (fd < 0)
+		{
+			free(map->map);
+			map->map = NULL;
 			return (-1);
+		}
 		if (parsing_file(fd, map) < 0)
 		{
 			close(fd);

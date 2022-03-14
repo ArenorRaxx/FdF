@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:52:13 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/14 20:57:47 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
 # endif
 
 /*		Includes	*/
-# include <fcntl.h>
 # include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "./external/mlx_linux/mlx.h"
 # include "./external/gnl/get_next_line.h"
 # include "./external/libft/libft.h"
