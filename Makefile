@@ -6,7 +6,7 @@
 #    By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:58:34 by mcorso            #+#    #+#              #
-#    Updated: 2022/03/07 11:40:25 by mcorso           ###   ########.fr        #
+#    Updated: 2022/03/14 17:18:05 by mcorso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ UNAME = $(shell uname)
 # src/obj
 SRC_FILES = main.c \
 	chain.c \
+	env_manager.c \
 	graphics.c \
 	hook_manager.c \
 	image_manager.c \
