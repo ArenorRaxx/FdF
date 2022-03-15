@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 20:57:47 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/15 02:24:10 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,8 @@ typedef struct s_env {
 	t_vars	vars;
 }				t_env;
 
+int		env_destroy(t_env *env);
+int		text_manager(t_env *env);
 int		env_init(t_env *env, char **argv);
-int		env_destroy(struct s_env *env);
 
 #endif

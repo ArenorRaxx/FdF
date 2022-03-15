@@ -6,11 +6,27 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 23:23:09 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/03/15 02:33:29 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+#include <stdio.h>
+
+int	text_manager(t_env *env)
+{
+	char	*nb;
+
+	nb = ft_itoa(env->map.amp);
+	if (!nb)
+	{
+		perror("FDF");
+		env_destroy(env);
+	}
+	mlx_string_put(env->vars.mlx, env->vars.win, 3, 9, 0xFF0000, nb);
+	free(nb);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
