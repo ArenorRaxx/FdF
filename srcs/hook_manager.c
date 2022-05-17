@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 11:18:50 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/15 13:12:39 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 17:05:04 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	hook_setup(t_env *env)
 {
-	mlx_hook(env->vars.win, 2, 1L<<0, hook_manage_key, env);
+	mlx_hook(env->vars.win, 2, 1L << 0, hook_manage_key, env);
 	mlx_hook(env ->vars.win, 17, 0, env_destroy, env);
 	mlx_loop_hook(env->vars.mlx, text_manager, env);
 }
