@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:50:06 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/15 02:24:10 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:14:27 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,17 +135,6 @@ typedef struct s_line {
 	t_point	d1;
 	t_point	d2;
 }				t_line;
-
-typedef struct s_color {
-	char	r;
-	char	g;
-	char	b;
-}				t_color;
-
-typedef struct s_fading {
-	t_color	from;
-	t_color	to;
-}				t_fading;
 
 void	draw_map_to_img(t_img *img, t_map *map);
 void	put_pixel(t_img *img, int x, int y, int color);
