@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 17:16:47 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:20:46 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 15:41:27 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,14 @@ int	env_init(t_env *env, char **argv)
 
 int	env_destroy(t_env *env)
 {
-	write(1, "map\n", 4);
 	if (env->map.map)
 		del_chain(env->map.map);
-	write(1, "parsed map\n", 11);
 	if (env->map.parsed_map)
 		free_parsed_map(&env->map);
-	write(1, "img\n", 4);
-	if (env->img.img)
+	if (env->vars.mlx && env->img.img)
 		mlx_destroy_image(env->vars.mlx, env->img.img);
-	write(1, "mlx & win\n", 10);
 	if (env->vars.mlx && env->vars.win)
 		mlx_destroy_window(env->vars.mlx, env->vars.win);
-	write(1, "mlx\n", 4);
 	if (env->vars.mlx)
 	{
 		mlx_destroy_display(env->vars.mlx);

@@ -6,12 +6,11 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:45:34 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 17:55:23 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:12:29 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include <stdio.h>
 
 t_coord	*new_node(char **line, t_coord *node)
 {
@@ -26,17 +25,19 @@ int	add_node(t_coord *prev_node, char *line)
 
 	split = NULL;
 	prev_node->next = malloc(sizeof(*prev_node));
-	if (prev_node->next)
+	if (!prev_node->next)
 	{
-		split = ft_split(line, ' ');
-		if (split)
-		{
-			new_node(split, prev_node->next);
-			return (0);
-		}
+		free(line);
+		return (-1);
 	}
-	free(line);
-	return (-1);
+	split = ft_split(line, ' ');
+	if (!split)
+	{
+		free(line);
+		return (-1);
+	}
+	new_node(split, prev_node->next);
+	return (0);
 }
 
 void	del_chain(t_coord *map)

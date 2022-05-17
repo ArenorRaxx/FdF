@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:24:43 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 23:43:02 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:05:07 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static void	calc_xy(t_map *map, char **row, int x, int y)
 
 	z = ft_atoi(row[x]);
 	xa = (x - y) * map->tw + map->offset;
-	ya = (x + y) * map->th - (map->amp * z);
-	ya -= map->highest;
+	ya = (x + y) * map->th - (map->amp * z) - map->highest;
 	scale = abs(map->highest) + abs(map->lowest);
 	map->parsed_map[y][x].x = xa;
 	map->parsed_map[y][x].y = (ya * HEIGHT) / scale;
@@ -69,8 +68,8 @@ static int	malloc_map(t_map *map)
 				malloc(sizeof(**map->parsed_map) * (map->width + 1));
 			if (!map->parsed_map[y++])
 			{
-				while (y >= 0)
-					free(map->parsed_map[--y]);
+				while (y-- > 0)
+					free(map->parsed_map[y]);
 				free(map->parsed_map);
 				return (-1);
 			}

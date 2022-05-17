@@ -6,12 +6,11 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 04:39:03 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/15 02:33:29 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:14:37 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include <stdio.h>
 
 int	text_manager(t_env *env)
 {

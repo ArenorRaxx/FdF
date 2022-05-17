@@ -6,7 +6,7 @@
 /*   By: mcorso <mcorso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 02:41:41 by mcorso            #+#    #+#             */
-/*   Updated: 2022/03/14 23:40:43 by mcorso           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:00:49 by mcorso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ruler(t_map *map)
 	return (0);
 }
 
-static int	high_low(t_map *map)
+static void	high_low(t_map *map)
 {
 	int			x;
 	int			y;
@@ -53,7 +53,6 @@ static int	high_low(t_map *map)
 		curr_node = curr_node->next;
 		y++;
 	}
-	return (0);
 }
 
 static int	fd_manager(char *file)
@@ -94,8 +93,7 @@ int	map_load(t_map *map, char *file)
 		}
 		ruler(map);
 	}
-	if (high_low(map) < 0)
-		return (-1);
+	high_low(map);
 	if (parsing_points(map) < 0)
 		return (-1);
 	return (0);
